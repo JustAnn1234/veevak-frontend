@@ -426,8 +426,8 @@ const makeStyles = (C) => `
   .returning-amount { margin-left:auto; font-family:'Space Grotesk',sans-serif; font-size:13px; font-weight:600; color:${C.greenText}; }
   .how-list { display:flex; flex-direction:column; gap:8px; margin-top:4px; }
   .how-item { font-size:12px; color:${C.textSecondary}; display:flex; gap:8px; }
-  .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:200; display:flex; align-items:flex-end; justify-content:center; }
-  .modal { background:${C.surface}; border:1px solid ${C.border}; border-radius:16px 16px 0 0; padding:20px 16px 36px; width:100%; max-width:480px; display:flex; flex-direction:column; gap:14px; max-height:90vh; overflow-y:auto; }
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.75); z-index: 200; display: flex; align-items: center;      /* 💥 Changed from flex-end to center */ justify-content: center; padding: 16px;            /* Added safe space buffer for mobile screen borders */ }
+  .modal { background: ${C.surface}; border: 1px solid ${C.border}; border-radius: 16px;      /* 💥 Changed to round out all 4 corners perfectly */ padding: 24px 20px;       /* Tweaked padding slightly for a cleaner centered look */ width: 100%; max-width: 440px;         /* Anchored max width nicely so it fits cleanly on web & mobile */ display: flex; flex-direction: column; gap: 14px; max-height: 85vh; overflow-y: auto; }
   .modal-title { font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:600; color:${C.textPrimary}; }
   .section-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
   .section-title { font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:${C.textSecondary}; font-weight:500; }
