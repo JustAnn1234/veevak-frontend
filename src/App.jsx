@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 
 // ── API configuration ───────────────────────────────────────────────
-const API_BASE = "http://localhost:8000";
+const API_BASE = "https://veevak-backend.onrender.com";
 
 async function apiPost(path, body) {
   const res = await fetch(`${API_BASE}${path}`, {
