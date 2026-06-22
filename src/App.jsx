@@ -953,9 +953,18 @@ function LogSale({ t, currency, shopId, shopName, onSaleLogged }) {
                 e.target.style.height = Math.min(e.target.scrollHeight, 150) + 'px';
               }}
               onKeyDown={e => {
-                if (e.key === "Enter" && !e.shiftKey) {
-                  e.preventDefault();
-                  if (!loading && input.trim()) handleSend();
+                // Check if the user is on a mobile device using screen width
+                const isMobile = window.innerWidth <= 768;
+
+                if (e.key === "Enter") {
+                  if (isMobile) {
+                    // On mobile, let 'Enter' naturally create a new line instead of sending
+                    return;
+                  } else if (!e.shiftKey) {
+                    // On desktop, 'Enter' sends the message, 'Shift + Enter' creates a new line
+                    e.preventDefault();
+                    if (!loading && input.trim()) handleSend();
+                  }
                 }
               }}
               style={{ 
