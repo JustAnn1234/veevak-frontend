@@ -941,9 +941,40 @@ function LogSale({ t, currency, shopId, shopName, onSaleLogged }) {
               </div>
             </div>
           )}
-          <div className="chat-input-row">
-            <input className="chat-input" placeholder={t.chatPlaceholder} value={input} onChange={e=>setInput(e.target.value)} onKeyDown={e=>e.key==="Enter"&&handleSend()}/>
-            <button className="btn-send" onClick={handleSend} disabled={loading||!input.trim()}>➤</button>
+          <div className="chat-input-row" style={{ alignItems: 'flex-end' }}>
+            <textarea 
+              className="chat-input" 
+              placeholder={t.chatPlaceholder} 
+              value={input} 
+              rows={1}
+              onChange={e => setInput(e.target.value)}
+              onInput={(e) => {
+                e.target.style.height = 'auto';
+                e.target.style.height = Math.min(e.target.scrollHeight, 150) + 'px';
+              }}
+              onKeyDown={e => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  if (!loading && input.trim()) handleSend();
+                }
+              }}
+              style={{ 
+                resize: 'none', 
+                overflowY: 'auto', 
+                paddingTop: '12px', 
+                paddingBottom: '12px',
+                height: 'auto',
+                flex: 1
+              }}
+            />
+            <button 
+              className="btn-send" 
+              style={{ marginBottom: '6px' }} 
+              onClick={handleSend} 
+              disabled={loading || !input.trim()}
+            >
+              ➤
+            </button>
           </div>
         </>
       )}
